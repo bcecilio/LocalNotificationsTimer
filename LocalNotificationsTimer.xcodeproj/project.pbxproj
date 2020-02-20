@@ -13,6 +13,8 @@
 		B724D6F923FF0E4D002E5EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B724D6F723FF0E4D002E5EE4 /* Main.storyboard */; };
 		B724D6FB23FF0E4E002E5EE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B724D6FA23FF0E4E002E5EE4 /* Assets.xcassets */; };
 		B724D6FE23FF0E4E002E5EE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B724D6FC23FF0E4E002E5EE4 /* LaunchScreen.storyboard */; };
+		B724D70623FF0F9B002E5EE4 /* CreateTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724D70523FF0F9B002E5EE4 /* CreateTimerController.swift */; };
+		B724D70A23FF0FE3002E5EE4 /* PendingNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724D70923FF0FE3002E5EE4 /* PendingNotifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B724D6FA23FF0E4E002E5EE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B724D6FD23FF0E4E002E5EE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B724D6FF23FF0E4E002E5EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B724D70523FF0F9B002E5EE4 /* CreateTimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimerController.swift; sourceTree = "<group>"; };
+		B724D70923FF0FE3002E5EE4 /* PendingNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingNotifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,41 @@
 		B724D6F023FF0E4D002E5EE4 /* LocalNotificationsTimer */ = {
 			isa = PBXGroup;
 			children = (
-				B724D6F123FF0E4D002E5EE4 /* AppDelegate.swift */,
-				B724D6F323FF0E4D002E5EE4 /* SceneDelegate.swift */,
-				B724D6F523FF0E4D002E5EE4 /* NotificationsViewController.swift */,
-				B724D6F723FF0E4D002E5EE4 /* Main.storyboard */,
-				B724D6FA23FF0E4E002E5EE4 /* Assets.xcassets */,
-				B724D6FC23FF0E4E002E5EE4 /* LaunchScreen.storyboard */,
+				B724D70723FF0FA0002E5EE4 /* Controllers */,
+				B724D70B23FF0FF4002E5EE4 /* NotificationClass */,
+				B724D70823FF0FB2002E5EE4 /* SupportingFiles */,
 				B724D6FF23FF0E4E002E5EE4 /* Info.plist */,
 			);
 			path = LocalNotificationsTimer;
+			sourceTree = "<group>";
+		};
+		B724D70723FF0FA0002E5EE4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B724D6F523FF0E4D002E5EE4 /* NotificationsViewController.swift */,
+				B724D70523FF0F9B002E5EE4 /* CreateTimerController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B724D70823FF0FB2002E5EE4 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B724D6F123FF0E4D002E5EE4 /* AppDelegate.swift */,
+				B724D6F323FF0E4D002E5EE4 /* SceneDelegate.swift */,
+				B724D6F723FF0E4D002E5EE4 /* Main.storyboard */,
+				B724D6FA23FF0E4E002E5EE4 /* Assets.xcassets */,
+				B724D6FC23FF0E4E002E5EE4 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B724D70B23FF0FF4002E5EE4 /* NotificationClass */ = {
+			isa = PBXGroup;
+			children = (
+				B724D70923FF0FE3002E5EE4 /* PendingNotifications.swift */,
+			);
+			path = NotificationClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +171,8 @@
 				B724D6F623FF0E4D002E5EE4 /* NotificationsViewController.swift in Sources */,
 				B724D6F223FF0E4D002E5EE4 /* AppDelegate.swift in Sources */,
 				B724D6F423FF0E4D002E5EE4 /* SceneDelegate.swift in Sources */,
+				B724D70623FF0F9B002E5EE4 /* CreateTimerController.swift in Sources */,
+				B724D70A23FF0FE3002E5EE4 /* PendingNotifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
