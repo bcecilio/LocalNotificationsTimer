@@ -19,9 +19,9 @@ class CreateTimerController: UIViewController {
     
     weak var delegate: CreateTimerControllerDelegate?
     
-    var hour:Int = 0
-    var minutes:Int = 0
-    var seconds:Int = 0
+    var hour: Double = 0
+    var minutes: Double = 0
+    var seconds: Double = 0
     private var timeInterval: TimeInterval = Date().timeIntervalSinceNow + 3
     
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ class CreateTimerController: UIViewController {
     private func createLocalNotification() {
         let content = UNMutableNotificationContent()
         content.title = textField.text ?? "No Title"
-        content.body = "Local Notifications is awesome when used appropriatly"
+        content.body = "\(timeInterval.asString(style: .full))"
         content.subtitle = "Learning Locan Notifications"
         content.sound = .default // only works in the background and hte app is not on silent - please test on device
         // TODO: you can also import your own audio file
@@ -73,7 +73,7 @@ class CreateTimerController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         createLocalNotification()
-        timeInterval = TimeInterval(seconds)
+        timeInterval = seconds + minutes + hour
         delegate?.didCreateNotification(self)
         dismiss(animated: true)
     }
@@ -117,13 +117,23 @@ extension CreateTimerController: UIPickerViewDelegate,UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0:
-            hour = row
+            hour = Double(row)
         case 1:
-            minutes = row
+            minutes = Double(row)
         case 2:
-            seconds = row
+            seconds = Double(row)
         default:
             break;
         }
     }
+}
+
+extension Double {
+func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+ let formatter = DateComponentsFormatter()
+ formatter.allowedUnits = [.hour, .minute, .second, .nanosecond]
+ formatter.unitsStyle = style
+ guard let formattedString = formatter.string(from: self) else { return "" }
+ return formattedString
+}
 }
