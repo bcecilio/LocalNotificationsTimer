@@ -45,7 +45,7 @@ class CreateTimerController: UIViewController {
         let identifier = UUID().uuidString // unique string
         
         // attachment
-        if let imageURL = Bundle.main.url(forResource: "demonBread", withExtension: "jpg"){
+        if let imageURL = Bundle.main.url(forResource: "surprisedMonkey", withExtension: "png"){
             do {
                 let attachment = try UNNotificationAttachment(identifier: identifier, url: imageURL, options: nil)
                 content.attachments = [attachment]
@@ -73,6 +73,7 @@ class CreateTimerController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         createLocalNotification()
+        timeInterval = TimeInterval(seconds)
         delegate?.didCreateNotification(self)
         dismiss(animated: true)
     }
