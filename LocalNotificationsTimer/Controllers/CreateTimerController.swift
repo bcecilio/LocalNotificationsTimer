@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol CreateTimerControllerDelegate: AnyObject {
+    func didCreateNotification(_ createTimerController: CreateTimerController)
+}
+
 class CreateTimerController: UIViewController {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    weak var delegate: CreateTimerControllerDelegate?
     
     var hour:Int = 0
     var minutes:Int = 0

@@ -35,6 +35,30 @@ class NotificationsViewController: UIViewController {
             self.timers = request
         }
     }
+    
+    private func checkForNotificationAuthorization() {
+        notificationCenter.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                print("app is authorized for notifications")
+            } else {
+                self.requestNotificationPermissions()
+            }
+        }
+    }
+    
+    private func requestNotificationPermissions() {
+        notificationCenter.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if let error = error {
+                print("error requesting athorization: \(error)")
+                return
+            }
+            if granted {
+                print("access was granted")
+            } else {
+                print("access denied")
+            }
+        }
+    }
 }
 
 extension NotificationsViewController: UITableViewDataSource {
@@ -45,6 +69,8 @@ extension NotificationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timerCell", for: indexPath)
         let timerCell = timers[indexPath.row]
+        cell.textLabel?.text = timerCell.content.title
+        cell.detailTextLabel?.text = timerCell.content.body
         return cell
     }
     
