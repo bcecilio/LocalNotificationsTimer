@@ -101,7 +101,7 @@
                     <navigationItem key="navigationItem" title="Current Notification" id="HWH-0S-Nk2">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="fgB-aw-uj6">
                             <connections>
-                                <action selector="doneButtonPressed:" destination="pWe-HR-SFc" id="qhG-dg-oO0"/>
+                                <action selector="doneButtonPressed:" destination="pWe-HR-SFc" id="juq-Yx-Qe6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

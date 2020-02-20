@@ -27,12 +27,33 @@ class NotificationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        configureRefreshControl()
+        notificationCenter.delegate = self
+        checkForNotificationAuthorization()
+        loadNotifications()
     }
     
-    private func loadNotifications() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navController = segue.destination as? UINavigationController, let createVC = navController.viewControllers.first as? CreateTimerController else {
+            fatalError("could not downcast to CreateTimerController")
+        }
+        createVC.delegate = self
+    }
+    
+    private func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(loadNotifications), for: .valueChanged)
+        loadNotifications()
+    }
+    
+    @objc private func loadNotifications() {
         pendingNotification.getPendingNotifications { (request) in
             self.timers = request
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
     
@@ -85,5 +106,17 @@ extension NotificationsViewController: UITableViewDataSource {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
         timers.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+}
+
+extension NotificationsViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+}
+
+extension NotificationsViewController: CreateTimerControllerDelegate {
+    func didCreateNotification(_ createTimerController: CreateTimerController) {
+        loadNotifications()
     }
 }

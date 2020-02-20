@@ -71,16 +71,17 @@ class CreateTimerController: UIViewController {
         }
     }
     
-    @IBAction func pickerViewChanged(_ sender: UIPickerView) {
-        
-    }
-    
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        
+        createLocalNotification()
+        delegate?.didCreateNotification(self)
+        dismiss(animated: true)
     }
 }
 
 extension CreateTimerController: UIPickerViewDelegate,UIPickerViewDataSource {
+    
+    // https://stackoverflow.com/questions/47844460/how-have-hourminutesseconds-in-date-picker-swift
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
